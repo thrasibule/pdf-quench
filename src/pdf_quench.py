@@ -1004,7 +1004,7 @@ class MainWindow(Gtk.Window):
       background.fill(0xF0F0F0FF)
 
       self.__canvas.page_region = Gdk.Rectangle()
-      self.__canvas.page_region.x, self.__canvas.page_region.y = w, h
+      self.__canvas.page_region.width, self.__canvas.page_region.height = w, h
       pw, ph = page_width, page_height
       page = self.__current_page
       # Render to a pixmap
