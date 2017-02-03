@@ -952,7 +952,7 @@ class MainWindow(Gtk.Window):
             page.mediaBox.lowerLeft = page.cropBox.lowerLeft
             page.mediaBox.upperRight = page.cropBox.upperRight
           out_file.addPage(page)
-      out_file.write(file(new_pdf_file_name, 'wb'))
+      out_file.write(open(new_pdf_file_name, 'wb'))
 
     return True
 
