@@ -33,8 +33,6 @@ import cairo
 from gi.repository import Gtk, GooCanvas, Pango, Poppler, Gdk, GdkPixbuf
 from collections import namedtuple
 import os
-#import pango
-#import poppler
 import sys
 
 # Temporary workaround to avoid the "maximum recursion depth exceeded" error.
@@ -1000,22 +998,13 @@ class MainWindow(Gtk.Window):
       scale = self.__canvas.get_scale()
       w, h = int(w * scale), int(h * scale)
       self.__canvas.set_bounds(0, 0, w, h)
-      background = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, False, 8, w, h)
-      background.fill(0xF0F0F0FF)
 
       self.__canvas.page_region = Gdk.Rectangle()
       self.__canvas.page_region.width, self.__canvas.page_region.height = w, h
       pw, ph = page_width, page_height
       page = self.__current_page
       # Render to a pixmap
-      # pixmap = Gdk.Pixmap(None, w, h, 24) # FIXME: 24 or 32?
-      # cr = pixmap.cairo_create()
-      # cr.set_source_rgb(1, 1, 1)
       scale = min(w/pw, h/ph)
-      # cr.scale(scale, scale)
-      # cr.rectangle(0, 0, pw, ph)
-      # cr.fill()
-      # page.render(cr)
       surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, w, h)
       context = cairo.Context(surface)
       context.scale(scale, scale)
@@ -1023,10 +1012,6 @@ class MainWindow(Gtk.Window):
       page.render(context)
       context.restore()
       # Convert pixmap to pixbuf
-      # pixbuf = GdkPixbuf.Pixbuf.get_new(GdkPixbuf.Colorspace.RGB, False, 8, w, h)
-
-      # pixbuf.get_from_drawable(
-      #   pixmap, Gdk.colormap_get_system(), 0, 0, 0, 0, w, h)
       pixbuf  = Gdk.pixbuf_get_from_surface (surface, 0, 0, w, h)
       self.__pdf_view.redraw(page_info, pixbuf)
     else:
