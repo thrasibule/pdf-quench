@@ -235,11 +235,11 @@ class Resizer(GooCanvas.CanvasEllipse):
 
 
   def __on_mouse_enter(self, item, target, event):
-    item.get_canvas().window.set_cursor(self._cursor)
+    item.get_canvas().get_window().set_cursor(self._cursor)
 
 
   def __on_mouse_leave(self, item, target, event):
-    item.get_canvas().window.set_cursor(None)
+    item.get_canvas().get_window().set_cursor(None)
 
 
 class UResizer(Resizer):
