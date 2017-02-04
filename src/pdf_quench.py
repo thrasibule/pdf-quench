@@ -717,7 +717,7 @@ class MainWindow(Gtk.Window):
     self.__zoom_level = DEFAULT_ZOOM_LEVEL
     self.__canvas = GooCanvas.Canvas()
     self.__canvas.set_scale(ZOOM_LEVELS[DEFAULT_ZOOM_LEVEL])
-    self.__canvas.modify_base(Gtk.StateType.NORMAL, Gdk.color_parse('#F0F0F0'))
+    self.__canvas.override_background_color(Gtk.StateType.NORMAL, Gdk.RGBA(240/255,240/255,240/255))
     self.__dragging = False
 
     frame = Gtk.Frame()
