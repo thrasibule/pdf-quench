@@ -1,4 +1,3 @@
-#! /usr/bin/python
 # -*- coding: utf-8 -*-
 
 """
@@ -31,7 +30,6 @@ gi.require_version('Gdk', '3.0')
 gi.require_version('GdkPixbuf', '2.0')
 import cairo
 from gi.repository import Gtk, GooCanvas, Pango, Poppler, Gdk, GdkPixbuf
-from collections import namedtuple
 import os
 import sys
 
@@ -42,7 +40,7 @@ sys.path.append('/usr/share/pdf-quench')
 from PyPDF2 import PdfFileWriter, PdfFileReader
 
 
-VERSION = '1.0.2'
+VERSION = '1.0.5'
 LAST_OPEN_FOLDER   = None
 NEXT_INDEX = 0
 CROP_SETTING_NAMES = set(['x', 'y', 'w', 'h'])
@@ -1017,8 +1015,7 @@ class MainWindow(Gtk.Window):
     else:
       self.__pdf_view.redraw()
 
-
-if __name__ == '__main__':
+def main():
   window = MainWindow()
   if (len(sys.argv) > 1):
     window.external_load_pdf_file(sys.argv[1])
